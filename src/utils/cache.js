@@ -1,4 +1,4 @@
-import redis from "../config/redis";
+import redis from "../config/redis.js";
 
 export const setCache = async (key, data, expiry=3600)=>{
     await redis.setex(key, expiry, JSON.stringify(data))

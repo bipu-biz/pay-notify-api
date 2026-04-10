@@ -1,4 +1,4 @@
-import apiError from '../utils/apiError'
+import apiError from '../utils/apiError.js'
 
 const errorhandler = (err,req,res,next)=>{
     const statuscode = err.statuscode || 500

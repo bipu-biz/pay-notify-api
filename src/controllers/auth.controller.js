@@ -1,8 +1,8 @@
-import User from '../models/user.model'
+import User from '../models/user.model.js'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
-import {generateAccessToken , generateRefreshToken} from '../utils/generateToken'
-import apiError from '../utils/apiError'
+import {generateAccessToken , generateRefreshToken} from '../utils/generateToken.js'
+import apiError from '../utils/apiError.js'
 
 export const register = async (req, res , next)=>{
     try{

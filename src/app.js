@@ -1,7 +1,7 @@
 import express from 'express'
 import cookieParser from 'cookie-parser'
-import errorhandler from './middlewares/error.middleware'
-import authRoutes from './routes/auth.routes'
+import errorhandler from './middlewares/error.middleware.js'
+import authRoutes from './routes/auth.routes.js'
 const app = express()
 
 app.use(express.json())
