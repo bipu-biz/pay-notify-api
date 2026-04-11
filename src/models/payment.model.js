@@ -20,7 +20,7 @@ const paymentSchema = new mongoose.Schema(
         status:{
             type:String,
             enum:['pending','paid','cancelled'],
-            default:pending
+            default:"pending"
         },
         org:{
             type:mongoose.Schema.Types.ObjectId,
@@ -32,13 +32,18 @@ const paymentSchema = new mongoose.Schema(
             ref:'User',
             required:[true,'creater is required']
         },
+        transactionId: {
+        type: String,
+        required: true,
+        unique: true
+        },
         paidBy:{
             type:mongoose.Schema.Types.ObjectId,
             ref:'User',
             default:null
         },
         paidAt:{
-            tyep:Date,
+            type:Date,
             dafault:null
         }
     },
