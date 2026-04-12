@@ -1,3 +1,4 @@
+import { notifyorg } from '../sockets/socket.js'
 import payment from '../models/payment.model.js'
 import apiError from '../utils/apiError.js'
 import { setCache,getCache,deleteCache } from '../utils/cache.js'
@@ -22,6 +23,11 @@ export const createpayment = async (req,res,next)=>{
             res.status(201).json({
                 success:true,
                 message:'payment created successfully',
+                payment
+            })
+
+            notifyorg(orgid,'newpayment',{
+                message: `newpayment "${payment.title}" of $${payment.amount} created`,
                 payment
             })
     }
@@ -88,11 +94,15 @@ export const markaspaid = async (req,res,next)=>{
                 message:'payment marked as paid',
                 payment
             })
+
+            notifyorg(orgid,'paymentpaid',{
+                message: `payment "${payment.title}" has been paid`,
+                payment
+            })
     }
     catch(error){
         next(error)
     }
-
 }
 
 export const cancelpayment = async(req,res,next)=>{

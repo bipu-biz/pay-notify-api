@@ -3,6 +3,7 @@ import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import {generateAccessToken , generateRefreshToken} from '../utils/generateToken.js'
 import apiError from '../utils/apiError.js'
+import { addemailjob } from '../queues/emailQueue.js'
 
 export const register = async (req, res , next)=>{
     try{
@@ -31,6 +32,11 @@ export const register = async (req, res , next)=>{
                 role:user.role
             }
         })
+
+        await addemailjob('welcomeEmail',{
+                name: user.name,
+                email: user.email
+            })
     }
     catch(error){
         next(error)
