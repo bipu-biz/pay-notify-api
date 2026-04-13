@@ -1,7 +1,7 @@
 import Organization from '../models/org.model.js'
 import user from '../models/user.model.js'
 import apiError from '../utils/apiError.js'
-import{setcache,getcache,deletecache} from '../utils/cache.js'
+import{setCache,getCache,deleteCache} from '../utils/cache.js'
 
 export const createorg = async(req,res,next)=>{
     try{
@@ -34,7 +34,7 @@ export const createorg = async(req,res,next)=>{
     }
 }
 
-export const getorg= async (res,res,next)=>{
+export const getorg= async (req,res,next)=>{
     try{
         const orgid= req.user.org
         

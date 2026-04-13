@@ -12,7 +12,7 @@ const router = express.Router()
 
 router.post('/',isloggedin,authorization('admin','member'),createpayment)
 router.get('/',isloggedin,getpayments)
-router.patch('/:id/pay',isloggedin,authorization('admin',member),markaspaid)
-router.patch('/:id.cancel',isloggedin,authorization('admin',),cancelpayment)
+router.patch('/:id/pay',isloggedin,authorization('admin','member'),markaspaid)
+router.patch('/:id.cancel',isloggedin,authorization('admin'),cancelpayment)
 
 export default router

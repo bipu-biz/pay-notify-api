@@ -62,7 +62,7 @@ export const login= async(req,res,next)=>{
         const accesstoken = generateAccessToken(user._id)
         const refreshtoken = generateRefreshToken(user._id)
 
-        user.refreshtoken = refreshtoken
+        user.refreshToken = refreshtoken
         await user.save()
 
         res.cookie('refreshtoken',refreshtoken,{
@@ -120,7 +120,7 @@ export const refreshtoken = async(req,res,next)=>{
         const decoded = jwt.verify(incomingrefreshtoken,process.env.REFRESH_TOKEN_SECRET)
 
         const user = await User.findById(decoded._id)
-        if(!user||user.refreshtoken!==incomingrefreshtoken){
+        if(!user||user.refreshToken!==incomingrefreshtoken){
             throw new apiError(401 , 'invallid refresh token')
         }
 

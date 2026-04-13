@@ -1,8 +1,10 @@
 import { Worker } from "bullmq";
-import MimeNode from "nodemailer/lib/mime-node";
-import redis from "../../config/redis.jd";
+import {createRequire} from 'module'
+const require = createRequire(import.meta.url)
+const nodemailer = require('nodemailer')
+import redis from "../../config/redis.js";
 
-const transporter = nodemailer.createtransport({
+const transporter = nodemailer.createTransport({
     service:'gmail',
     auth:{
         user:process.env.EMAIL_USER,
