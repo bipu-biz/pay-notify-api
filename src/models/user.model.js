@@ -14,6 +14,10 @@ const userSchema = new mongoose.Schema({
         trim:true,
         lowercase:true
     },
+    refreshToken: {
+        type: String,
+        default: null
+    },
     password:{
         type:String,
         require:[true,'password is required'],

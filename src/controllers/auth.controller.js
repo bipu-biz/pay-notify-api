@@ -94,7 +94,7 @@ export const login= async(req,res,next)=>{
 export const logout = async (req,res,next)=>{
     try{
         await User.findByIdAndUpdate(req.user._id,{
-            refreshtoken:null
+            refreshToken:null
         })
 
         res.clearCookie('refreshtoken')
@@ -125,7 +125,6 @@ export const refreshtoken = async(req,res,next)=>{
         }
 
         const newAccessToken = generateAccessToken(user._id)
-
         res.status(200).json({
             success:true,
             accesstoken:newAccessToken

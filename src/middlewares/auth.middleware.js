@@ -6,7 +6,7 @@ export const isloggedin = async (req,res,next)=>{
     try{
         const token=
         req.cookies?.accesstoken ||
-        req.headers['authorization']?.replace('Bearer', '')
+        req.headers['authorization']?.replace('Bearer ', '').trim()
 
         if(!token){
             throw new apiError(401,'not logged in')
@@ -19,7 +19,6 @@ export const isloggedin = async (req,res,next)=>{
         }
 
         req.user = user
-
         next()
     }
     catch(error){
