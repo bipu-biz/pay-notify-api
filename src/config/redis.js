@@ -8,7 +8,7 @@ redis.on('connect',()=>{
     console.log('redis connected')
 })
 
-redis.on('error',()=>{
+redis.on('error',(error)=>{
     console.log('redis connection failed', error.message)
 })
 
