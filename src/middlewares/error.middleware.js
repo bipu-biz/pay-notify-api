@@ -6,7 +6,7 @@ const errorhandler = (err,req,res,next)=>{
 
 
     if(err.name==='ValidationError'){
-        const errors = Object.valuses(err.errors).mamp(e=>e.message)
+        const errors = Object.values(err.errors).map(e=>e.message)
         return res.status(400).json({
             success:false,
             message:errors

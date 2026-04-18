@@ -38,7 +38,7 @@ export const getorg= async (req,res,next)=>{
     try{
         const orgid= req.user.org
         
-        const cached = await getcache(`org:${orgid}`)
+        const cached = await getCache(`org:${orgid}`)
         if(cached){
             return res.status(200).json({
                 success:true,
@@ -50,9 +50,9 @@ export const getorg= async (req,res,next)=>{
 
         if(!org) throw new apiError(404,'orgnization not found')
 
-            await setcache(`org:${orgid}`,org)
+            await setCache(`org:${orgid}`,org)
 
-            res.status(209).json({
+            res.status(200).json({
                 success:true
             })
     }

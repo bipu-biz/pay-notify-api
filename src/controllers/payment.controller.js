@@ -1,5 +1,5 @@
 import { notifyorg } from '../sockets/socket.js'
-import payment from '../models/payment.model.js'
+import Payment from '../models/payment.model.js'
 import apiError from '../utils/apiError.js'
 import { setCache,getCache,deleteCache } from '../utils/cache.js'
 
@@ -10,7 +10,7 @@ export const createpayment = async (req,res,next)=>{
 
         if(!orgid) throw new apiError(400, ' you dont belong to any organization')
 
-            const payment = await payment.create({
+            const payment = await Payment.create({
                 title,
                 amount,
                 description,
@@ -49,7 +49,7 @@ export const getpayments = async(req,res,next)=>{
             })
         }
 
-        const payments = await payment.find({org:orgid})
+        const payments = await Payment.find({org:orgid})
         .populate('createdBy','name email')
         .populate('paidBy','name email')
         .sort({createdAt: -1})
@@ -72,7 +72,7 @@ export const markaspaid = async (req,res,next)=>{
         const {id}= req.params
         const orgid = req.user.org
 
-        const payment = await payment.findById(id)
+        const payment = await Payment.findById(id)
         if(!payment) throw new apiError(404,'payment not found')
 
             if(payment.org.toString()!==orgid.toString()){
@@ -110,7 +110,7 @@ export const cancelpayment = async(req,res,next)=>{
         const {id}=req.params
         const orgid = req.user.org
 
-        const payment = await payment.findById(id)
+        const payment = await Payment.findById(id)
         if(!payment) throw new apiError(404, 'payment not found')
 
         if(payment.org.toString()!==orgid.toString()){
@@ -118,7 +118,7 @@ export const cancelpayment = async(req,res,next)=>{
         }
 
         if(payment.status!== 'pending'){
-            throw new apiError(403,'onlu pending payments can be cancelled')
+            throw new apiError(403,'only pending payments can be cancelled')
         }
 
         payment.status = 'cancelled'

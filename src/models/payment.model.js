@@ -32,11 +32,6 @@ const paymentSchema = new mongoose.Schema(
             ref:'User',
             required:[true,'creater is required']
         },
-        transactionId: {
-        type: String,
-        required: true,
-        unique: true
-        },
         paidBy:{
             type:mongoose.Schema.Types.ObjectId,
             ref:'User',
