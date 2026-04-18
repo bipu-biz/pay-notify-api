@@ -10,6 +10,7 @@ A production-ready fintech backend API for managing organizational payments with
 - Real-time Notifications via WebSockets (Socket.io)
 - Redis Caching Layer for High Performance
 - Background Email Processing with BullMQ
+- Rate Limiting for API Security
 - Global Error Handling
 
 ## Tech Stack
